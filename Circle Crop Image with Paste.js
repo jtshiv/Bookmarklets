@@ -1,7 +1,7 @@
 javascript: (function(){
 	/*
 	* With an image copied to your clipboard, run this script
-	* and it will create a text box. Paste into it and i will
+	* and it will create a text box. Paste into it and it will
 	* grab the data and do the circle crop.
 	*/
 	var createScript = function(id, url, callback) {
