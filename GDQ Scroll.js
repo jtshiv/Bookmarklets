@@ -1,4 +1,9 @@
 javascript: (function(){
+	/* 
+	* The idea for this script is that it will look for today in
+	* the Games Done Quick schedule then find the time block that
+	* they are probably in.
+	 */
 	var createScript = function(id, url, callback) {
 		if (document.getElementById('jqueryscript')) {
 			document.getElementById('jqueryscript').remove();
