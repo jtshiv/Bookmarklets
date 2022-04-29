@@ -5,7 +5,7 @@ javascript: (function(){
 	* It converts to a base64 uri. When complete, creates a snackbar
 	* that when clicked copies the uri to the clipboard.
 	*/
-	var url = window.prompt("Enter Image URL", window.location.href);
+	
 	var dataURLToBlob = function(dataURL) {
 		var BASE64_MARKER = ';base64,';
 		if (dataURL.indexOf(BASE64_MARKER) == -1) {
@@ -59,7 +59,7 @@ javascript: (function(){
 					var array = [];
 					for (var i = 0; i < binary.length; i++) {
 						array.push(binary.charCodeAt(i));
-					}
+					};
 					return new Blob([new Uint8Array(array)], {
 						type: 'image/png'
 					});
@@ -71,7 +71,7 @@ javascript: (function(){
 		xhr.open('GET', url);
 		xhr.responseType = 'blob';
 		xhr.send();
-	}
+	};
 	var snackbar = document.createElement('div');
 	snackbar.id = "snackbar";
 	snackbar.innerText = "Copy";
@@ -79,5 +79,31 @@ javascript: (function(){
 	if (document.getElementById("snackbar")) snackbar = document.getElementById("snackbar");
 	var style = document.createElement('style');
 	style.id = "style";
-	style.innerHTML = `#snackbar {    visibility: hidden; /* Hidden by default. Visible on click */    min-width: 250px; /* Set a default minimum width */    margin-left: -125px; /* Divide value of min-width by 2 */    background-color: #333; /* Black background color */    color: #fff; /* White text color */    text-align: center; /* Centered text */    border-radius: 2px; /* Rounded borders */    padding: 16px; /* Padding */    position: fixed; /* Sit on top of the screen */    z-index: 1; /* Add a z-index if needed */    left: 50%; /* Center the snackbar */    bottom: 30px; /* 30px from the bottom */}/* Show the snackbar when clicking on a button (class added with JavaScript) */#snackbar.show {    visibility: visible; /* Show the snackbar */    /* Add animation: Take 0.5 seconds to fade in and out the snackbar.    However, delay the fade out process for 2.5 seconds */   -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;   animation: fadein 0.5s, fadeout 0.5s 2.5s;}/* Animations to fade the snackbar in and out */@-webkit-keyframes fadein {    from {bottom: 0; opacity: 0;}     to {bottom: 30px; opacity: 1;}}@keyframes fadein {    from {bottom: 0; opacity: 0;}    to {bottom: 30px; opacity: 1;}}@-webkit-keyframes fadeout {    from {bottom: 30px; opacity: 1;}     to {bottom: 0; opacity: 0;}}@keyframes fadeout {    from {bottom: 30px; opacity: 1;}    to {bottom: 0; opacity: 0;}}%60;if (!document.getElementById('style')) document.head.appendChild(style);toDataUrl(window.url, function(myBase64) {    var snackbar = document.getElementById("snackbar");    snackbar.onclick = function() {        document.execCommand("copy");    };    snackbar.addEventListener("copy", function(event) {        event.preventDefault();        if (event.clipboardData) {            snackbar.innerText = "Copied";            event.clipboardData.setData("text/plain", myBase64);            setTimeout(function() {                snackbar.className = snackbar.className.replace("show", "");            }, 3000);        };    });    snackbar.innerText = "Copy";    snackbar.className = "show";    setTimeout(function() {        snackbar.className = snackbar.className.replace("show", "");    }, 30000);});
+	style.innerHTML = atob('I3NuYWNrYmFyIHsgICAgdmlzaWJpbGl0eTogaGlkZGVuOyAvKiBIaWRkZW4gYnkgZGVmYXVsdC4gVmlzaWJsZSBvbiBjbGljayAqLyAgICBtaW4td2lkdGg6IDI1MHB4OyAvKiBTZXQgYSBkZWZhdWx0IG1pbmltdW0gd2lkdGggKi8gICAgbWFyZ2luLWxlZnQ6IC0xMjVweDsgLyogRGl2aWRlIHZhbHVlIG9mIG1pbi13aWR0aCBieSAyICovICAgIGJhY2tncm91bmQtY29sb3I6ICMzMzM7IC8qIEJsYWNrIGJhY2tncm91bmQgY29sb3IgKi8gICAgY29sb3I6ICNmZmY7IC8qIFdoaXRlIHRleHQgY29sb3IgKi8gICAgdGV4dC1hbGlnbjogY2VudGVyOyAvKiBDZW50ZXJlZCB0ZXh0ICovICAgIGJvcmRlci1yYWRpdXM6IDJweDsgLyogUm91bmRlZCBib3JkZXJzICovICAgIHBhZGRpbmc6IDE2cHg7IC8qIFBhZGRpbmcgKi8gICAgcG9zaXRpb246IGZpeGVkOyAvKiBTaXQgb24gdG9wIG9mIHRoZSBzY3JlZW4gKi8gICAgei1pbmRleDogMTsgLyogQWRkIGEgei1pbmRleCBpZiBuZWVkZWQgKi8gICAgbGVmdDogNTAlOyAvKiBDZW50ZXIgdGhlIHNuYWNrYmFyICovICAgIGJvdHRvbTogMzBweDsgLyogMzBweCBmcm9tIHRoZSBib3R0b20gKi99LyogU2hvdyB0aGUgc25hY2tiYXIgd2hlbiBjbGlja2luZyBvbiBhIGJ1dHRvbiAoY2xhc3MgYWRkZWQgd2l0aCBKYXZhU2NyaXB0KSAqLyNzbmFja2Jhci5zaG93IHsgICAgdmlzaWJpbGl0eTogdmlzaWJsZTsgLyogU2hvdyB0aGUgc25hY2tiYXIgKi8gICAgLyogQWRkIGFuaW1hdGlvbjogVGFrZSAwLjUgc2Vjb25kcyB0byBmYWRlIGluIGFuZCBvdXQgdGhlIHNuYWNrYmFyLiAgICBIb3dldmVyLCBkZWxheSB0aGUgZmFkZSBvdXQgcHJvY2VzcyBmb3IgMi41IHNlY29uZHMgKi8gICAtd2Via2l0LWFuaW1hdGlvbjogZmFkZWluIDAuNXMsIGZhZGVvdXQgMC41cyAyLjVzOyAgIGFuaW1hdGlvbjogZmFkZWluIDAuNXMsIGZhZGVvdXQgMC41cyAyLjVzO30vKiBBbmltYXRpb25zIHRvIGZhZGUgdGhlIHNuYWNrYmFyIGluIGFuZCBvdXQgKi9ALXdlYmtpdC1rZXlmcmFtZXMgZmFkZWluIHsgICAgZnJvbSB7Ym90dG9tOiAwOyBvcGFjaXR5OiAwO30gICAgIHRvIHtib3R0b206IDMwcHg7IG9wYWNpdHk6IDE7fX1Aa2V5ZnJhbWVzIGZhZGVpbiB7ICAgIGZyb20ge2JvdHRvbTogMDsgb3BhY2l0eTogMDt9ICAgIHRvIHtib3R0b206IDMwcHg7IG9wYWNpdHk6IDE7fX1ALXdlYmtpdC1rZXlmcmFtZXMgZmFkZW91dCB7ICAgIGZyb20ge2JvdHRvbTogMzBweDsgb3BhY2l0eTogMTt9ICAgICB0byB7Ym90dG9tOiAwOyBvcGFjaXR5OiAwO319QGtleWZyYW1lcyBmYWRlb3V0IHsgICAgZnJvbSB7Ym90dG9tOiAzMHB4OyBvcGFjaXR5OiAxO30gICAgdG8ge2JvdHRvbTogMDsgb3BhY2l0eTogMDt9fQ==');
+	if (!document.getElementById('style')){
+		document.head.appendChild(style);
+	};
+	toDataUrl(window.location.href, function(myBase64) {
+		var snackbar = document.getElementById("snackbar");
+		snackbar.onclick = function() {
+			document.execCommand("copy");
+		};
+		snackbar.addEventListener("copy", function(event) {
+			event.preventDefault();
+			if (event.clipboardData) {
+				snackbar.innerText = "Copied";
+				event.clipboardData.setData("text/plain", myBase64);
+				setTimeout(function() {
+					snackbar.className = snackbar.className.replace("show", "");
+				}, 3000);
+			};
+		});
+		snackbar.innerText = "Copy";
+		snackbar.className = "show";
+		setTimeout(function() {
+			snackbar.className = snackbar.className.replace("show", "");
+		}, 30000);
+	});
+	
+
 })();
