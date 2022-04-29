@@ -1,4 +1,7 @@
 javascript: (function(global) {
+	/*
+	* I don't remember if this actually works or not
+	*/
     var document = global.document,
         body = document.body,
         forEach = Array.prototype.forEach,
