@@ -1,5 +1,10 @@
+/*
+* This function can be copied into JavaScript to
+* use a bottom snackbar. You remove it by setting:
+* snackbar.style.opacity='0'
+*/
+
 var createSnackbar=function(message){
-	/*to remove, set snackbar.style.opacity = '0'*/
 	if ($('#snackbarstyle').length){
 		$('#snackbarstyle').remove();
 	};
