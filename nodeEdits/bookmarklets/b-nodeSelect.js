@@ -11,6 +11,6 @@ javascript: (function(){
 	};
     var req = new XMLHttpRequest();
     req.addEventListener("load",createScript);
-    req.open("GET","https://raw.githubusercontent.com/jtshiv/Bookmarklets/nodeSlim/nodeEdits/nodeSelect.js");
+    req.open("GET","https://raw.githubusercontent.com/jtshiv/Bookmarklets/main/nodeEdits/nodeSelect.js");
     req.send();
 })();
