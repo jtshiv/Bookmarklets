@@ -1,6 +1,9 @@
+/* The purpose of this bookmarklet is to run the nodeSelect script. There's a function to
+pull the data from the url then pass it into the innHTML of a new script node. */
+
 javascript: (function(){
     var urls = ["https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js",
-        "https://raw.githubusercontent.com/jtshiv/Bookmarklets/nodeSelectSlim/nodeEdits/nodeSelect.js"
+        "https://raw.githubusercontent.com/jtshiv/Bookmarklets/main/nodeEdits/nodeSelect.js"
         ];
     var ids = ["jqueryscript",
         "nodeSelect"
@@ -30,6 +33,4 @@ javascript: (function(){
         req.send();
     };
     httpReq();
-    
-    
 })();
