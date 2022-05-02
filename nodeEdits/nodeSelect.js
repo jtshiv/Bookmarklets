@@ -1,5 +1,5 @@
 javascript: (function(){
-	var createScript = function(id, url, callback) {
+	/* var createScript = function(id, url, callback) {
 		if (document.getElementById('jqueryscript')) {
 			document.getElementById('jqueryscript').remove();
 		};
@@ -9,7 +9,7 @@ javascript: (function(){
 		s.addEventListener('load', callback);
 		document.getElementsByTagName('head')[0].appendChild(s);
 	};
-	createScript("jquery", "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js", function() {
+	createScript("jquery", "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js", function() { */
 		
 		/*create css for border*/
 		if($('#bordercss').length){$('#bordercss').remove()};
@@ -151,5 +151,5 @@ javascript: (function(){
 			$(window).off('click.bordercss');
 		});
 		
-	});
+	/* }); */
 })();
