@@ -1,11 +1,11 @@
-var createNodes = function(type,id,innerHTML){
+var createNodes = function(type,id,innerHTML,loc){
     if (document.getElementById(id)){
         document.getElementById(id).remove();
     }
     var elem = document.createElement(type);
     elem.id=id;
     elem.innerHTML=innerHTML;
-    document.head.appendChild(elem);
+    loc.appendChild(elem);
     return elem;
 }
 
@@ -47,7 +47,7 @@ var style=`/* The Modal (background) */
   text-decoration: none;
   cursor: pointer;
 }`
-style = createNodes("style","mainstyle",style);
+style = createNodes("style","mainstyle",style,document.head);
 
 
 // Create the modal
@@ -55,7 +55,7 @@ var modal = `<div class="modal-content">
 <span class="close">&times;</span>
 <p>Some text in the Modal..</p>
 </div>`;
-modal = createNodes("div","myModal",modal);
+modal = createNodes("div","myModal",modal,document.body);
 modal.classList.add('modal');
 
 // Test visibility
