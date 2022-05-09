@@ -1,3 +1,6 @@
+// Basing modals off this:
+// https://www.w3schools.com/howto/howto_css_modals.asp
+
 var createNodes = function(type,id,innerHTML,loc){
     if (document.getElementById(id)){
         document.getElementById(id).remove();
@@ -51,15 +54,18 @@ style = createNodes("style","mainstyle",style,document.head);
 
 
 // Create the modal
-var modal = `<div class="modal-content">
-<span class="close">&times;</span>
-<p>Some text in the Modal..</p>
-</div>`;
+var modal =
+    `<div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Some text in the Modal..</p>
+    </div>`;
 modal = createNodes("div","myModal",modal,document.body);
 modal.classList.add('modal');
 
-// Test visibility
+// Show and add listener to close on x
 modal.style.display = "block";
-setTimeout(function(){
+var span = document.getElementsByClassName("close")[0];
+span.onclick = function() {
     modal.style.display = "none";
-},2000);
+  }
+
