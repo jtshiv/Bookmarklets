@@ -12,6 +12,18 @@ var createNodes = function(type,id,innerHTML,loc){
     return elem;
 }
 
+// Pull in another file
+var getFile = function(url){
+    var req = new XMLHttpRequest();
+    req.addEventListener("load",function() {
+        console.log(this.responseText);
+        return this.responseText;
+    });
+    req.open("GET",url);
+    console.log("Pulling: " + url);
+    req.send();
+}
+
 // Create the CSS
 var style=`/* The Modal (background) */
 .modal {
@@ -66,6 +78,12 @@ modal.classList.add('modal');
 modal.style.display = "block";
 var span = document.getElementsByClassName("close")[0];
 span.onclick = function() {
-    modal.style.display = "none";
-  }
+modal.style.display = "none";
+}
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
 
