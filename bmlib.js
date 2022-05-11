@@ -31,6 +31,7 @@
 var Bm_bLibraryLoaded = true;      // stops library from being loaded twice (just in case)
 var Bm_bLibraryjQuery;
 var Bm_bLibraryjQueryComp;
+var jqueryWorking;
 
  /**
   * @param  {string} message
@@ -61,20 +62,23 @@ var Bm_bLibraryjQueryComp;
         snackbar.setAttribute('class', 'show');
         return snackbar;
     } else {
-        addJQuery(createSnackbar(message));
+        if(jqueryWorking!=true){
+            addJQuery(createSnackbar,message);
+        };
     }
 }
 
 /**
  * Set jquery trigger for tampermonkey then wait until complete to return true
  */
-function addJQuery(callback) {
+function addJQuery(callback,params) {
+    jqueryWorking=true;
     Bm_bLibraryjQuery=true;
     var i =0;
     function loop(){
         setTimeout(function() {   
             if (Bm_bLibraryjQueryComp==true){
-                callback;
+                callback(params);
             } else if (i<=10){
                 i++;
                 loop();
