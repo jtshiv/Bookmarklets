@@ -3,12 +3,13 @@
  * Tampermonkey script bookmarkLibrary.js.
  * 
  * Here's an example to call:
- * javascript:(function(){window.Bm_bLibraryRequest=true;setTimeout(function(){window['createSnackbar']('this is a test');},200);})()
+ * javascript:(function(){window.Bm_bLibraryRequest=true;setTimeout(function(){window['createSnackbar']('this is a test');},2000);})()
  * This adds jquery. Is directly inside tampermonkey script
- * javascript:(function(){window.Bm_bLibraryjQuery=true;setTimeout(function(){console.log('bookmarklet ran');},200);})()
+ * javascript:(function(){window.Bm_bLibraryjQuery=true;setTimeout(function(){console.log('bookmarklet ran');},2000);})()
  */
 
 var Bm_bLibraryLoaded = true;      // stops library from being loaded twice (just in case)
+var Bm_bLibraryjQuery;
 
  /**
   * @param  {string} message
@@ -16,7 +17,7 @@ var Bm_bLibraryLoaded = true;      // stops library from being loaded twice (jus
   * Can be dismissed with snackbar.style.opacity='0'
   */
  function createSnackbar(message) {
-    window.Bm_bLibraryjQuery=true;
+    Bm_bLibraryjQuery=true;
     if ($('#snackbarstyle').length) {
         $('#snackbarstyle').remove();
     };
