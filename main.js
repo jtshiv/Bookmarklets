@@ -1,6 +1,14 @@
 // Basing modals off this:
 // https://www.w3schools.com/howto/howto_css_modals.asp
 
+/**
+ * @param  {string} type
+ * @param  {string} id
+ * @param  {string} innerHTML
+ * @param  {node} loc
+ * 
+ * This function will auto create a node with the provided parameters
+ */
 var createNodes = function(type,id,innerHTML,loc){
     if (document.getElementById(id)){
         document.getElementById(id).remove();
@@ -13,6 +21,12 @@ var createNodes = function(type,id,innerHTML,loc){
 }
 
 // Pull in another file
+/**
+ * @param  {string} url
+ * 
+ * This fn will pull the file by url and return the text
+ * TODO this doesn't work yet
+ */
 var getFile = function(url){
     var req = new XMLHttpRequest();
     req.addEventListener("load",function() {
