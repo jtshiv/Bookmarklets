@@ -10,15 +10,18 @@
 
 //  javascript:(function(){
 //     window.Bm_bLibraryRequest=true;
-//     runFunction(window['createSnackbar'],'this is a test');
-//     function runFunction(fnName,{fnParams}){
-//         if(typeof(fnName) != 'undefined'){
-//             fnName(fnParams);
-//         } else {
-//             console.log(fnName & "doesn't exist");
-//             setTimeout (runFunction(fnName,{fnParams}), 100);
-//         }
-//     }
+//     var i =0;
+//     function loop(){
+//         setTimeout(function() {   
+//             if (window.Bm_bLibraryLoadedComp==true){
+//                 window['createSnackbar']('this is a test');
+//             } else if (i<=10){
+//                 i++;
+//                 loop();
+//             }
+//           }, 500)
+//     };
+//     loop();
 // })()
  
  
@@ -27,6 +30,7 @@
 
 var Bm_bLibraryLoaded = true;      // stops library from being loaded twice (just in case)
 var Bm_bLibraryjQuery;
+var Bm_bLibraryjQueryComp;
 
  /**
   * @param  {string} message
@@ -34,10 +38,7 @@ var Bm_bLibraryjQuery;
   * Can be dismissed with snackbar.style.opacity='0'
   */
  function createSnackbar(message) {
-    Bm_bLibraryjQuery=true;
-    // while (typeof(window.jQuery) == 'undefined'){
-    //     setTimeout(function(){console.log('Waiting for jQuery...')},200);
-    // }
+    addJQuery();
     if ($('#snackbarstyle').length) {
         $('#snackbarstyle').remove();
     };
@@ -59,4 +60,23 @@ var Bm_bLibraryjQuery;
 
     snackbar.setAttribute('class', 'show');
     return snackbar;
+}
+
+/**
+ * Set jquery trigger for tampermonkey then wait until complete to return true
+ */
+function addJQuery() {
+    Bm_bLibraryjQuery=true;
+    var i =0;
+    function loop(){
+        setTimeout(function() {   
+            if (Bm_bLibraryjQueryComp==true){
+                return true;
+            } else if (i<=10){
+                i++;
+                loop();
+            }
+          }, 500)
+    };
+    loop();
 }
