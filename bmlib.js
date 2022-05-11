@@ -16,6 +16,7 @@ var Bm_bLibraryLoaded = true;      // stops library from being loaded twice (jus
   * Can be dismissed with snackbar.style.opacity='0'
   */
  function createSnackbar(message) {
+    window.Bm_bLibraryjQuery=true;
     if ($('#snackbarstyle').length) {
         $('#snackbarstyle').remove();
     };
