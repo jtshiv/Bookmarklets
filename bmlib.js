@@ -35,9 +35,9 @@ var Bm_bLibraryjQuery;
   */
  function createSnackbar(message) {
     Bm_bLibraryjQuery=true;
-    while (typeof(window.jQuery) == 'undefined'){
-        setTimeout(function(){console.log('Waiting for jQuery...')},200);
-    }
+    // while (typeof(window.jQuery) == 'undefined'){
+    //     setTimeout(function(){console.log('Waiting for jQuery...')},200);
+    // }
     if ($('#snackbarstyle').length) {
         $('#snackbarstyle').remove();
     };
