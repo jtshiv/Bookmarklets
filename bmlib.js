@@ -8,6 +8,23 @@
  * javascript:(function(){window.Bm_bLibraryjQuery=true;setTimeout(function(){console.log('bookmarklet ran');},2000);})()
  */
 
+ javascript:(function(){
+    window.Bm_bLibraryRequest=true;
+    runFunction(window['createSnackbar'],'this is a test');
+    function runFunction(fnName,{fnParams}){
+        if(typeof(fnName) != 'undefined'){
+            fnName(fnParams);
+        } else {
+            console.log(fnName & "doesn't exist");
+            setTimeout (runFunction(fnName,{fnParams}), 100);
+        }
+    }
+})()
+ 
+ 
+    
+
+
 var Bm_bLibraryLoaded = true;      // stops library from being loaded twice (just in case)
 var Bm_bLibraryjQuery;
 
@@ -18,6 +35,9 @@ var Bm_bLibraryjQuery;
   */
  function createSnackbar(message) {
     Bm_bLibraryjQuery=true;
+    while (typeof(window.jQuery) == 'undefined'){
+        setTimeout(function(){console.log('Waiting for jQuery...')},200);
+    }
     if ($('#snackbarstyle').length) {
         $('#snackbarstyle').remove();
     };
