@@ -3,30 +3,11 @@
  * Tampermonkey script bookmarkLibrary.js.
  * 
  * Here's an example to call:
- * javascript:(function(){window.Bm_bLibraryRequest=true;setTimeout(function(){window['createSnackbar']('this is a test');},2000);})()
+ * javascript:(function(){window.Bm_bLibraryRequest=true;var i =0;function loop(){setTimeout(function() {if (window.Bm_bLibraryLoadedComp==true){window['createSnackbar']('this is a test');} else if (i<=10){i++;loop();}}, 500)};loop();})()
  * This adds jquery. Is directly inside tampermonkey script
  * javascript:(function(){window.Bm_bLibraryjQuery=true;setTimeout(function(){console.log('bookmarklet ran');},2000);})()
  */
-
-//  javascript:(function(){
-//     window.Bm_bLibraryRequest=true;
-//     var i =0;
-//     function loop(){
-//         setTimeout(function() {   
-//             if (window.Bm_bLibraryLoadedComp==true){
-//                 window['createSnackbar']('this is a test');
-//             } else if (i<=10){
-//                 i++;
-//                 loop();
-//             }
-//           }, 500)
-//     };
-//     loop();
-// })()
  
- 
-    
-
 
 var Bm_bLibraryLoaded = true;      // stops library from being loaded twice (just in case)
 var Bm_bLibraryjQuery;
