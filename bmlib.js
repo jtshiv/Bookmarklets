@@ -8,18 +8,18 @@
  * javascript:(function(){window.Bm_bLibraryjQuery=true;setTimeout(function(){console.log('bookmarklet ran');},2000);})()
  */
 
- javascript:(function(){
-    window.Bm_bLibraryRequest=true;
-    runFunction(window['createSnackbar'],'this is a test');
-    function runFunction(fnName,{fnParams}){
-        if(typeof(fnName) != 'undefined'){
-            fnName(fnParams);
-        } else {
-            console.log(fnName & "doesn't exist");
-            setTimeout (runFunction(fnName,{fnParams}), 100);
-        }
-    }
-})()
+//  javascript:(function(){
+//     window.Bm_bLibraryRequest=true;
+//     runFunction(window['createSnackbar'],'this is a test');
+//     function runFunction(fnName,{fnParams}){
+//         if(typeof(fnName) != 'undefined'){
+//             fnName(fnParams);
+//         } else {
+//             console.log(fnName & "doesn't exist");
+//             setTimeout (runFunction(fnName,{fnParams}), 100);
+//         }
+//     }
+// })()
  
  
     
