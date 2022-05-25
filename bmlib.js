@@ -69,6 +69,19 @@ function addJQuery(callback,params) {
     loop();
 }
 
+function playbackSpeed(){
+    var answer = prompt("What playback speed? Set as 1 for 100%.");/* Pausing will reset the playback speed");*/
+    if(answer!=null){
+        var elems = document.getElementsByTagName('video');
+        if(elems.length){
+            elems[0].playbackRate=parseInt(answer);
+        } else{
+        alert("Video element not found");
+        };
+    };
+};
+
+
 /**
  * @param  {string} type
  * @param  {string} id
@@ -144,6 +157,7 @@ function mainScript(){
         `<div class="modal-content">
             <span class="close">&times;</span>
             <p>Some text in the Modal..</p>
+            <div id=playbackSpeed>Playback Speed</div>
         </div>`;
     modal = createNodes("div","myModal",modal,document.body);
     modal.classList.add('modal');
@@ -160,4 +174,7 @@ function mainScript(){
             modal.style.display = "none";
         }
     }
+    // Set playbackSpeed function
+    let play = document.querySelector('#playbackSpeed');
+    play.addEventListener('click', playbackSpeed());
 }
