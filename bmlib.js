@@ -176,5 +176,7 @@ function mainScript(){
     }
     // Set playbackSpeed function
     let play = document.querySelector('#playbackSpeed');
-    play.addEventListener('click', playbackSpeed());
+    play.addEventListener('click', e =>{
+	 playbackSpeed()   	
+    });
 }
