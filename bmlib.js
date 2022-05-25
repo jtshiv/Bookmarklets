@@ -129,6 +129,7 @@ function mainScript(){
     /* Modal Content/Box */
     .modal-content {
     background-color: #fefefe;
+    color: black
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
@@ -137,7 +138,7 @@ function mainScript(){
 
     /* The Close Button */
     .close {
-    color: #aaa;
+    color: black;
     float: right;
     font-size: 28px;
     font-weight: bold;
