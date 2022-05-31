@@ -184,7 +184,7 @@ function mainScript(){
 
     // Set rmListYt function
     let rmListYt= document.querySelector('#rmListYt');
-    play.addEventListener('click', e =>{
+    rmListYt.addEventListener('click', e =>{
 	 rmListYt()   	
     });
 
