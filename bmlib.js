@@ -159,6 +159,7 @@ function mainScript(){
             <span class="close">&times;</span>
             <p>Some text in the Modal..</p>
             <div id=playbackSpeed>Playback Speed</div>
+            <div id=rmListYt>Remove List from YT Urls/div>
         </div>`;
     modal = createNodes("div","myModal",modal,document.body);
     modal.classList.add('modal');
@@ -180,4 +181,26 @@ function mainScript(){
     play.addEventListener('click', e =>{
 	 playbackSpeed()   	
     });
+
+    // Set rmListYt function
+    let rmListYt= document.querySelector('#rmListYt');
+    play.addEventListener('click', e =>{
+	 rmListYt()   	
+    });
+
+
+}
+function rmListYt(){
+	/*desktop*/
+	for (elem of document.querySelectorAll('#video-title')){
+		elem.href = elem.href.replace(/&list=.*$/,"");
+	}
+	/*mobile image*/
+	for (elem of document.querySelectorAll('.compact-media-item-image')){
+		elem.href = elem.href.replace(/&list=.*$/,"");
+	}
+	/*mobile other*/
+	for (elem of document.querySelectorAll('.compact-media-item-metadata-content')){
+		elem.href = elem.href.replace(/&list=.*$/,"");
+	}
 }
