@@ -181,7 +181,6 @@ function mainScript(){
     let modal =
         `<div class="modal-content">
             <span class="close">&times;</span>
-            <p>Some text in the Modal..</p>
         </div>`;
     modal = createNodes("div","myModal",modal,document.body);
     modal.classList.add('modal');
