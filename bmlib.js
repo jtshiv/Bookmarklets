@@ -199,8 +199,8 @@ function mainScript(){
         }
     }
     // Set functions
-	createNodes('div','playbackSpeed','Playback Speed',modal.querySelector('.modal-content'),playbackSpeed);
-	createNodes('div','rmListYt','Remove List from YT Urls',modal.querySelector('.modal-content'),rmListYt);
+	createNodes('p','playbackSpeed','Playback Speed',modal.querySelector('.modal-content'),playbackSpeed);
+	createNodes('p','rmListYt','Remove List from YT Urls',modal.querySelector('.modal-content'),rmListYt);
 
     // Set rmListYt function
     //let rmListYt= document.querySelector('#rmListYt');
