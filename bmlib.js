@@ -159,7 +159,7 @@ function mainScript(){
             <span class="close">&times;</span>
             <p>Some text in the Modal..</p>
             <div id=playbackSpeed>Playback Speed</div>
-            <div id=rmListYt>Remove List from YT Urls/div>
+            <div id=rmListYt>Remove List from YT Urls</div>
         </div>`;
     modal = createNodes("div","myModal",modal,document.body);
     modal.classList.add('modal');
