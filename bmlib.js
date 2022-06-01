@@ -125,6 +125,14 @@ function rmWatchedYt(){
 
 };
 
+// Go from YouTube Channel to the uploads playlist full
+function ytChannelToPlaylist(){
+	let base = document.querySelector('meta[property="og:url"][content*="channel\/UC"]');
+	if (base===null){return};
+	let id = "UU" + base.content.replace(/.*channel\/UC/,'');
+	window.open('https://www.youtube.com/playlist?list=' + id,'_self');
+}
+
 /**
  * @param  {string} type
  * @param  {string} id
@@ -244,6 +252,7 @@ function mainScript(){
 	createNodes('p','playbackSpeed','Playback Speed',modal.querySelector('.modal-body'),playbackSpeed);
 	createNodes('p','rmListYt','Remove List from YT Urls',modal.querySelector('.modal-body'),rmListYt);
 	createNodes('p','rmWatchedYt','Remove Watched from YT Playlist',modal.querySelector('.modal-body'),rmWatchedYt);
+	createNodes('p','ytChannelToPlaylist','YT Channel to Upload Playlist',modal.querySelector('.modal-body'),ytChannelToPlaylist);
 
     // Set rmListYt function
     //let rmListYt= document.querySelector('#rmListYt');
