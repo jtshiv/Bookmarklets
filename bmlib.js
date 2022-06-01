@@ -83,18 +83,19 @@ function playbackSpeed(){
 };
 
 function rmListYt(){
+	let reg = /&list=.*&index=\d+/;
 	/*desktop*/
 	let elem;
 	for (elem of document.querySelectorAll('#video-title')){
-		elem.href = elem.href.replace(/&list=.*$/,"");
+		elem.href = elem.href.replace(reg,"");
 	}
 	/*mobile image*/
 	for (elem of document.querySelectorAll('.compact-media-item-image')){
-		elem.href = elem.href.replace(/&list=.*$/,"");
+		elem.href = elem.href.replace(reg,"");
 	}
 	/*mobile other*/
 	for (elem of document.querySelectorAll('.compact-media-item-metadata-content')){
-		elem.href = elem.href.replace(/&list=.*$/,"");
+		elem.href = elem.href.replace(reg,"");
 	}
 	
 	// close modal
