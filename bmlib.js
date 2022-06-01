@@ -101,6 +101,19 @@ function rmListYt(){
 	document.querySelector('#myModal').style.display = "none";
 }
 
+function rmWatchedYt(){
+	let elems = document.querySelectorAll('ytd-playlist-video-renderer.ytd-playlist-video-list-renderer');
+	let ratio = .8;
+	for (let item of Array.from(elems)){
+	    let prog = item.querySelector('#progress');
+	    try {
+		if(prog.offsetWidth / prog.parentNode.offsetWidth >= ratio){
+		    item.remove();
+		};
+	    } catch(e){};
+	}
+};
+
 /**
  * @param  {string} type
  * @param  {string} id
@@ -219,6 +232,7 @@ function mainScript(){
     // Set functions
 	createNodes('p','playbackSpeed','Playback Speed',modal.querySelector('.modal-body'),playbackSpeed);
 	createNodes('p','rmListYt','Remove List from YT Urls',modal.querySelector('.modal-body'),rmListYt);
+	createNodes('p','rmWatchedYt','Remove Watched from YT Playlist',modal.querySelector('.modal-body'),rmWatchedYt);
 
     // Set rmListYt function
     //let rmListYt= document.querySelector('#rmListYt');
