@@ -112,6 +112,16 @@ function rmWatchedYt(){
 		};
 	    } catch(e){};
 	}
+	elems = document.querySelectorAll('ytm-playlist-video-renderer');
+	for (let item of Array.from(elems)){
+	    let prog = item.querySelector('div.thumbnail-overlay-resume-playback-progress');
+	    try {
+		if(prog.offsetWidth / prog.parentNode.offsetWidth >= ratio){
+		    item.style.display = 'none';
+		};
+	    } catch(e){};
+	}
+
 };
 
 /**
