@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Bookmarklet Library
 // @namespace    http://tampermonkey.net/
-// @version      0.4.1
+// @version      0.4.2
 // @description  try to take over the world!
 // @author       jtshiv
 // @include      *
@@ -28,7 +28,7 @@
                 oScript.type = 'text/javascript';
                 GM_xmlhttpRequest({
                     method: 'GET',
-                    url: "https://github.com/jtshiv/Bookmarklets/raw/dev/bmlib.js?v=" + Date.now(),
+                    url: "https://github.com/jtshiv/Bookmarklets/raw/main/bmlib.js?v=" + Date.now(),
                     onload: function(response){
                         GM_addElement(document.body,'script',{
                             textContent: response.responseText
