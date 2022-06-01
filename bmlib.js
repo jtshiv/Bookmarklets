@@ -149,16 +149,29 @@ function mainScript(){
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
     }
+	/* Modal Header */
+	.modal-header {
+	  padding: 2px 16px;
+	  background-color: #f44336;
+	  color: white;
+	}
+    /* Modal Body */
+.modal-body {padding: 2px 16px;}
 
-    /* Modal Content/Box */
-    .modal-content {
-    background-color: #fefefe;
-    color: black
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-    }
+.modal-body:hover{
+	cursor: pointer;
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  }
 
     /* The Close Button */
     .close {
@@ -180,7 +193,13 @@ function mainScript(){
     // Create the modal
     let modal =
         `<div class="modal-content">
-            <span class="close">&times;</span>
+		<div class="modal-header">
+		<span class="close">&times;</span>
+		<h3>Scripts</h3>
+		</div>
+		<div class="modal-body">
+
+		</div>
         </div>`;
     modal = createNodes("div","myModal",modal,document.body);
     modal.classList.add('modal');
@@ -198,8 +217,8 @@ function mainScript(){
         }
     }
     // Set functions
-	createNodes('p','playbackSpeed','Playback Speed',modal.querySelector('.modal-content'),playbackSpeed);
-	createNodes('p','rmListYt','Remove List from YT Urls',modal.querySelector('.modal-content'),rmListYt);
+	createNodes('p','playbackSpeed','Playback Speed',modal.querySelector('.modal-body'),playbackSpeed);
+	createNodes('p','rmListYt','Remove List from YT Urls',modal.querySelector('.modal-body'),rmListYt);
 
     // Set rmListYt function
     //let rmListYt= document.querySelector('#rmListYt');
