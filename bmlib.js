@@ -82,7 +82,7 @@ function playbackSpeed(){
 	document.querySelector('#myModal').style.display = "none";
 };
 
-function rmListYt(){
+function rmListYt(close=true){
 	let reg = /&list=.*&index=\d+/;
 	/*desktop*/
 	let elem;
@@ -99,7 +99,9 @@ function rmListYt(){
 	}
 	
 	// close modal
-	document.querySelector('#myModal').style.display = "none";
+	if (close){
+		document.querySelector('#myModal').style.display = "none";
+	}
 }
 
 function rmWatchedYt(){
@@ -113,6 +115,10 @@ function rmWatchedYt(){
 		};
 	    } catch(e){};
 	}
+	try{
+		elems[elems.length-1].scrollIntoView();
+	} catch(e){};
+
 	elems = document.querySelectorAll('ytm-playlist-video-renderer');
 	for (let item of Array.from(elems)){
 	    let prog = item.querySelector('div.thumbnail-overlay-resume-playback-progress');
@@ -122,6 +128,13 @@ function rmWatchedYt(){
 		};
 	    } catch(e){};
 	}
+	try{
+		elems[elems.length-1].scrollIntoView();
+	} catch(e){};
+	
+
+	// run remove playlist links
+	rmListYt(false)
 
 };
 
