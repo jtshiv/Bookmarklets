@@ -7,19 +7,19 @@
  * This adds jquery. Is directly inside tampermonkey script
  * javascript:(function(){window.Bm_bLibraryjQuery=true;setTimeout(function(){console.log('bookmarklet ran');},2000);})()
  */
- 
+
 
 let Bm_bLibraryLoaded = true;      // stops library from being loaded twice (just in case)
 let Bm_bLibraryjQuery;
 let Bm_bLibraryjQueryComp;
 let jqueryWorking;
 
- /**
-  * @param  {string} message
-  * Creates a snackbar on the bottom of the screen
-  * Can be dismissed with snackbar.style.opacity='0'
-  */
- function createSnackbar(message) {
+/**
+ * @param  {string} message
+ * Creates a snackbar on the bottom of the screen
+ * Can be dismissed with snackbar.style.opacity='0'
+ */
+function createSnackbar(message) {
     if (window.jQuery){
         if ($('#snackbarstyle').length) {
             $('#snackbarstyle').remove();
@@ -39,7 +39,7 @@ let jqueryWorking;
             style.remove();
         });
         document.body.appendChild(snackbar);
-    
+
         snackbar.setAttribute('class', 'show');
         return snackbar;
     } else {
@@ -64,7 +64,7 @@ function addJQuery(callback,params) {
                 i++;
                 loop();
             }
-          }, 500)
+        }, 500)
     };
     loop();
 }
@@ -76,74 +76,74 @@ function playbackSpeed(){
         if(elems.length){
             elems[0].playbackRate=parseInt(answer);
         } else{
-        alert("Video element not found");
+            alert("Video element not found");
         };
     };
-	document.querySelector('#myModal').style.display = "none";
+    document.querySelector('#myModal').style.display = "none";
 };
 
 function rmListYt(close=true){
-	let reg = /&list=.*&index=\d+/;
-	/*desktop*/
-	let elem;
-	for (elem of document.querySelectorAll('#video-title')){
-		elem.href = elem.href.replace(reg,"");
-	}
-	/*mobile image*/
-	for (elem of document.querySelectorAll('.compact-media-item-image')){
-		elem.href = elem.href.replace(reg,"");
-	}
-	/*mobile other*/
-	for (elem of document.querySelectorAll('.compact-media-item-metadata-content')){
-		elem.href = elem.href.replace(reg,"");
-	}
-	
-	// close modal
-	if (close){
-		document.querySelector('#myModal').style.display = "none";
-	}
+    let reg = /&list=.*&index=\d+/;
+    /*desktop*/
+    let elem;
+    for (elem of document.querySelectorAll('#video-title')){
+        elem.href = elem.href.replace(reg,"");
+    }
+    /*mobile image*/
+    for (elem of document.querySelectorAll('.compact-media-item-image')){
+        elem.href = elem.href.replace(reg,"");
+    }
+    /*mobile other*/
+    for (elem of document.querySelectorAll('.compact-media-item-metadata-content')){
+        elem.href = elem.href.replace(reg,"");
+    }
+
+    // close modal
+    if (close){
+        document.querySelector('#myModal').style.display = "none";
+    }
 }
 
 function rmWatchedYt(){
-	let elems = document.querySelectorAll('ytd-playlist-video-renderer.ytd-playlist-video-list-renderer');
-	let ratio = .8;
-	for (let item of Array.from(elems)){
-	    let prog = item.querySelector('#progress');
-	    try {
-		if(prog.offsetWidth / prog.parentNode.offsetWidth >= ratio){
-		    item.remove();
-		};
-	    } catch(e){};
-	}
-	//try{
-	//	elems[elems.length-1].scrollIntoView();
-	//} catch(e){};
+    let elems = document.querySelectorAll('ytd-playlist-video-renderer.ytd-playlist-video-list-renderer');
+    let ratio = .8;
+    for (let item of Array.from(elems)){
+        let prog = item.querySelector('#progress');
+        try {
+            if(prog.offsetWidth / prog.parentNode.offsetWidth >= ratio){
+                item.remove();
+            };
+        } catch(e){};
+    }
+    //try{
+    //	elems[elems.length-1].scrollIntoView();
+    //} catch(e){};
 
-	elems = document.querySelectorAll('ytm-playlist-video-renderer');
-	for (let item of Array.from(elems)){
-	    let prog = item.querySelector('div.thumbnail-overlay-resume-playback-progress');
-	    try {
-		if(prog.offsetWidth / prog.parentNode.offsetWidth >= ratio){
-		    item.style.display = 'none';
-		};
-	    } catch(e){};
-	}
-	//try{
-	//	elems[elems.length-1].scrollIntoView();
-	//} catch(e){};
-	
+    elems = document.querySelectorAll('ytm-playlist-video-renderer');
+    for (let item of Array.from(elems)){
+        let prog = item.querySelector('div.thumbnail-overlay-resume-playback-progress');
+        try {
+            if(prog.offsetWidth / prog.parentNode.offsetWidth >= ratio){
+                item.style.display = 'none';
+            };
+        } catch(e){};
+    }
+    //try{
+    //	elems[elems.length-1].scrollIntoView();
+    //} catch(e){};
 
-	// run remove playlist links
-	rmListYt(false)
+
+    // run remove playlist links
+    rmListYt(false)
 
 };
 
 // Go from YouTube Channel to the uploads playlist full
 function ytChannelToPlaylist(){
-	let base = document.querySelector('meta[property="og:url"][content*="channel\/UC"]');
-	if (base===null){return};
-	let id = "UU" + base.content.replace(/.*channel\/UC/,'');
-	window.open('https://www.youtube.com/playlist?list=' + id,'_self');
+    let base = document.querySelector('meta[property="og:url"][content*="channel\/UC"]');
+    if (base===null){return};
+    let id = "UU" + base.content.replace(/.*channel\/UC/,'');
+    window.open('https://www.youtube.com/playlist?list=' + id,'_self');
 }
 
 /**
@@ -161,11 +161,11 @@ function createNodes(type,id,innerHTML,loc,callback = null){
     let elem = document.createElement(type);
     elem.id=id;
     elem.innerHTML=innerHTML;
-	if (callback) {
-		elem.addEventListener('click',e => {
-		callback();
-	});
-	}
+    if (callback) {
+        elem.addEventListener('click',e => {
+            callback();
+        });
+    }
     loc.appendChild(elem);
     return elem;
 }
@@ -194,17 +194,17 @@ function mainScript(){
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
     }
-	/* Modal Header */
-	.modal-header {
-	  padding: 2px 16px;
-	  background-color: #f44336;
-	  color: white;
-	}
+    /* Modal Header */
+    .modal-header {
+      padding: 2px 16px;
+      background-color: #f44336;
+      color: white;
+    }
     /* Modal Body */
 .modal-body {padding: 2px 16px;}
 
 .modal-body:hover{
-	cursor: pointer;
+    cursor: pointer;
 }
 
 /* Modal Content */
@@ -238,13 +238,13 @@ function mainScript(){
     // Create the modal
     let modal =
         `<div class="modal-content">
-		<div class="modal-header">
-		<span class="close">&times;</span>
-		<h3>Scripts</h3>
-		</div>
-		<div class="modal-body">
+        <div class="modal-header">
+        <span class="close">&times;</span>
+        <h3>Scripts</h3>
+        </div>
+        <div class="modal-body">
 
-		</div>
+        </div>
         </div>`;
     modal = createNodes("div","myModal",modal,document.body);
     modal.classList.add('modal');
@@ -253,7 +253,7 @@ function mainScript(){
     modal.style.display = "block";
     let span = document.getElementsByClassName("close")[0];
     span.onclick = function() {
-    modal.style.display = "none";
+        modal.style.display = "none";
     }
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
@@ -262,15 +262,15 @@ function mainScript(){
         }
     }
     // Set functions
-	createNodes('p','playbackSpeed','Playback Speed',modal.querySelector('.modal-body'),playbackSpeed);
-	createNodes('p','rmListYt','Remove List from YT Urls',modal.querySelector('.modal-body'),rmListYt);
-	createNodes('p','rmWatchedYt','Remove Watched from YT Playlist',modal.querySelector('.modal-body'),rmWatchedYt);
-	createNodes('p','ytChannelToPlaylist','YT Channel to Upload Playlist',modal.querySelector('.modal-body'),ytChannelToPlaylist);
+    createNodes('p','playbackSpeed','Playback Speed',modal.querySelector('.modal-body'),playbackSpeed);
+    createNodes('p','rmListYt','Remove List from YT Urls',modal.querySelector('.modal-body'),rmListYt);
+    createNodes('p','rmWatchedYt','Remove Watched from YT Playlist',modal.querySelector('.modal-body'),rmWatchedYt);
+    createNodes('p','ytChannelToPlaylist','YT Channel to Upload Playlist',modal.querySelector('.modal-body'),ytChannelToPlaylist);
 
     // Set rmListYt function
     //let rmListYt= document.querySelector('#rmListYt');
     //rmListYt.addEventListener('click', e =>{
-	// rmListYt()   	
+    // rmListYt()   	
     //});
 
 
