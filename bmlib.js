@@ -115,9 +115,9 @@ function rmWatchedYt(){
 		};
 	    } catch(e){};
 	}
-	try{
-		elems[elems.length-1].scrollIntoView();
-	} catch(e){};
+	//try{
+	//	elems[elems.length-1].scrollIntoView();
+	//} catch(e){};
 
 	elems = document.querySelectorAll('ytm-playlist-video-renderer');
 	for (let item of Array.from(elems)){
@@ -128,9 +128,9 @@ function rmWatchedYt(){
 		};
 	    } catch(e){};
 	}
-	try{
-		elems[elems.length-1].scrollIntoView();
-	} catch(e){};
+	//try{
+	//	elems[elems.length-1].scrollIntoView();
+	//} catch(e){};
 	
 
 	// run remove playlist links
