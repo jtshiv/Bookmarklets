@@ -136,6 +136,27 @@ function rmWatchedYt(){
     // run remove playlist links
     rmListYt(false)
 
+    //check if there's loading spinner in the bottom
+    // mobile is: ytm-continuation-item-renderer class=spinner
+    if(document.querySelectorAll('ytd-continuation-item-renderer').length > 0 | 
+    document.querySelectorAll('ytm-continuation-item-renderer.spinner').length > 0){
+        //scroll down
+        try{
+            //desktop
+            window.scrollTo(0,document.getElementsByTagName('ytd-app')[0].scrollHeight);
+        }catch(e){};
+        try{
+            //mobile
+            window.scrollTo(0,document.getElementsByTagName('ytm-browse')[0].scrollHeight);
+        }catch(e){};
+        //redo it again. if modal is closed then don't try again
+        if (document.querySelector('#myModal').style.display!=='none'){
+            setTimeout(function(){rmWatchedYt()}, 500);
+        };
+    } else {
+        console.log("... IS DONE! *metal riffs*");  
+    }
+
 };
 
 // Go from YouTube Channel to the uploads playlist full
