@@ -82,6 +82,41 @@ function playbackSpeed(){
     document.querySelector('#myModal').style.display = "none";
 };
 
+function copyTextClicked(){
+    let elementMouseIsOver;
+
+    let style = document.createElement('style');
+    style.id = 'selectStyle';
+    style.innerHTML = `
+    .selectStyle{
+            border:2px solid red;
+    }
+    `;
+    if (document.querySelector('#selectStyle')) { document.querySelector('#selectStyle').remove() };
+    document.head.appendChild(style);
+
+    document.body.addEventListener('mousedown', function (e) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+
+        let x = e.clientX, y = e.clientY;
+        elementMouseIsOver = document.elementFromPoint(x, y);
+        console.log(elementMouseIsOver);
+        let sel = window.getSelection();
+        let rng = document.createRange();
+        rng.selectNodeContents(elementMouseIsOver);
+        sel.removeAllRanges();
+        sel.addRange(rng);
+        document.execCommand('copy');
+        elementMouseIsOver.classList.add('selectStyle');
+        setTimeout(function () {
+            elementMouseIsOver.classList.remove('selectStyle');
+        }, 1500);
+
+    }, { once: true });
+
+};
+
 function rmListYt(close=true){
     let reg = /&list=.*&index=\d+/;
     /*desktop*/
@@ -287,6 +322,7 @@ function mainScript(){
     createNodes('p','rmListYt','Remove List from YT Urls',modal.querySelector('.modal-body'),rmListYt);
     createNodes('p','rmWatchedYt','Remove Watched from YT Playlist',modal.querySelector('.modal-body'),rmWatchedYt);
     createNodes('p','ytChannelToPlaylist','YT Channel to Upload Playlist',modal.querySelector('.modal-body'),ytChannelToPlaylist);
+    createNodes('p','copyTextClicked','Copy text of clicked element',modal.querySelector('.modal-body'),copyTextClicked);
 
     // Set rmListYt function
     //let rmListYt= document.querySelector('#rmListYt');
