@@ -115,6 +115,8 @@ function copyTextClicked(){
 
     }, { once: true });
 
+    // hide modal
+    document.querySelector('#myModal').style.display = "none";
 };
 
 function rmListYt(close=true){
