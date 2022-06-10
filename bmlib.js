@@ -232,7 +232,7 @@ function createNodes(type,id,innerHTML,loc,callback = null){
  * This will be the script to open a menu for the others
  * TODO pretty much everything
  * Called with:
- * !javascript:(function(){window.Bm_bLibraryRequest=true;let i =0;function loop(){setTimeout(function() {if (window.Bm_bLibraryLoadedComp==true){window['mainScript']();} else if (i<=10){i++;loop();}}, 500)};loop();})()
+ * javascript:(function(){window.Bm_bLibraryRequest=true;let i =0;function loop(){setTimeout(function() {if (window.Bm_bLibraryLoadedComp==true){window['mainScript']();} else if (i<=10){i++;loop();}}, 500)};loop();})()
  */
 function mainScript(){
     // Basing modals off this:
@@ -241,54 +241,54 @@ function mainScript(){
     // Create the CSS
     let style=`/* The Modal (background) */
     .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 9999; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 9999; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
     }
     /* Modal Header */
     .modal-header {
-      padding: 2px 16px;
-      background-color: #f44336;
-      color: white;
+        padding: 2px 16px;
+        background-color: #f44336;
+        color: white;
     }
     /* Modal Body */
-.modal-body {padding: 2px 16px;}
+    .modal-body {padding: 2px 16px;}
 
-.modal-body:hover{
-    cursor: pointer;
-}
+    .modal-body:hover{
+        cursor: pointer;
+    }
 
-/* Modal Content */
-.modal-content {
-  position: relative;
-  background-color: #fefefe;
-  margin: auto;
-  padding: 0;
-  border: 1px solid #888;
-  width: 80%;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-  }
+    /* Modal Content */
+    .modal-content {
+        position: relative;
+        background-color: #fefefe;
+        margin: auto;
+        padding: 0;
+        border: 1px solid #888;
+        width: 80%;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    }
 
     /* The Close Button */
     .close {
-    color: black;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+        color: black;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
     }
 
     .close:hover,
     .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
     }`
     style = createNodes("style","mainstyle",style,document.head);
 
