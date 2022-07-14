@@ -144,31 +144,24 @@ function rmListYt(close=true){
 function rmWatchedYt(){
     let elems = document.querySelectorAll('ytd-playlist-video-renderer.ytd-playlist-video-list-renderer');
     let ratio = .8;
-    for (let item of Array.from(elems)){
-        let prog = item.querySelector('#progress');
+    elems.forEach(x=>{
+        let prog = x.querySelector('#progress');
         try {
             if(prog.offsetWidth / prog.parentNode.offsetWidth >= ratio){
-                item.remove();
+                x.remove();
             };
         } catch(e){};
-    }
-    //try{
-    //	elems[elems.length-1].scrollIntoView();
-    //} catch(e){};
+    });
 
     elems = document.querySelectorAll('ytm-playlist-video-renderer');
-    for (let item of Array.from(elems)){
+    elems.forEach(item=>{
         let prog = item.querySelector('div.thumbnail-overlay-resume-playback-progress');
         try {
             if(prog.offsetWidth / prog.parentNode.offsetWidth >= ratio){
                 item.style.display = 'none';
             };
         } catch(e){};
-    }
-    //try{
-    //	elems[elems.length-1].scrollIntoView();
-    //} catch(e){};
-
+    });
 
     // run remove playlist links
     rmListYt(false)
@@ -176,7 +169,7 @@ function rmWatchedYt(){
     //check if there's loading spinner in the bottom
     // mobile is: ytm-continuation-item-renderer class=spinner
     if(document.querySelectorAll('ytd-continuation-item-renderer').length > 0 | 
-    document.querySelectorAll('ytm-continuation-item-renderer').length > 0){
+        document.querySelectorAll('ytm-continuation-item-renderer').length > 0){
         //scroll down
         try{
             //desktop
