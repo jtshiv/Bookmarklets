@@ -182,9 +182,13 @@ function rmWatchedYt(){
         //redo it again. if modal is closed then don't try again
         if (document.querySelector('#myModal').style.display!=='none'){
             setTimeout(function(){rmWatchedYt()}, 500);
+        } else{
+            window.scrollTo(0,0);
         };
     } else {
         console.log("... IS DONE! *metal riffs*");  
+        document.querySelector('#myModal').style.display = "none";
+        window.scrollTo(0,0);
     }
 
 };
