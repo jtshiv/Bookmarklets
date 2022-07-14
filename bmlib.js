@@ -141,57 +141,65 @@ function rmListYt(close=true){
     }
 }
 
-function rmWatchedYt(){
-    let elems = document.querySelectorAll('ytd-playlist-video-renderer.ytd-playlist-video-list-renderer');
-    let ratio = .8;
-    for (let item of Array.from(elems)){
-        let prog = item.querySelector('#progress');
-        try {
-            if(prog.offsetWidth / prog.parentNode.offsetWidth >= ratio){
-                item.remove();
-            };
-        } catch(e){};
-    }
-    //try{
-    //	elems[elems.length-1].scrollIntoView();
-    //} catch(e){};
-
-    elems = document.querySelectorAll('ytm-playlist-video-renderer');
-    for (let item of Array.from(elems)){
-        let prog = item.querySelector('div.thumbnail-overlay-resume-playback-progress');
-        try {
-            if(prog.offsetWidth / prog.parentNode.offsetWidth >= ratio){
-                item.style.display = 'none';
-            };
-        } catch(e){};
-    }
-    //try{
-    //	elems[elems.length-1].scrollIntoView();
-    //} catch(e){};
-
-
-    // run remove playlist links
-    rmListYt(false)
+function rmWatchedYt(n=0){
+    let elems = document.querySelectorAll('ytd-playlist-video-renderer.ytd-playlist-video-list-renderer,ytm-playlist-video-renderer');
 
     //check if there's loading spinner in the bottom
     // mobile is: ytm-continuation-item-renderer class=spinner
-    if(document.querySelectorAll('ytd-continuation-item-renderer').length > 0 | 
-    document.querySelectorAll('ytm-continuation-item-renderer').length > 0){
+    if(n!==-1 && document.querySelectorAll('ytd-continuation-item-renderer,ytm-continuation-item-renderer').length > 0){
         //scroll down
+        if(n>=elems.length){
+            n=elems.length-1;
+        };
         try{
-            //desktop
-            window.scrollTo(0,document.getElementsByTagName('ytd-app')[0].scrollHeight);
+            elems[n].scrollIntoView();
         }catch(e){};
-        try{
-            //mobile
-            window.scrollTo(0,document.getElementsByTagName('ytm-browse')[0].scrollHeight);
-        }catch(e){};
+        
         //redo it again. if modal is closed then don't try again
+        console.log(n);
+        console.log(elems.length-1);
+        if(n===elems.length){
+            window.scrollTo(0,0);
+            n=-21;
+        };
         if (document.querySelector('#myModal').style.display!=='none'){
-            setTimeout(function(){rmWatchedYt()}, 500);
+            setTimeout(function(){rmWatchedYt(n+10)}, 500);
+        } else{
+            window.scrollTo(0,0);
+            let ratio = .8;
+            elems.forEach(x=>{
+                let y = x.querySelectorAll('#progress,div.thumbnail-overlay-resume-playback-progress');
+                y.forEach(prog=>{
+                    try {
+                        if(prog.offsetWidth / prog.parentNode.offsetWidth >= ratio){
+                            x.remove();
+                        };
+                    } catch(e){};
+                });
+            });
+            setTimeout(function(){rmWatchedYt(-1)}, 1000);
+            window.scrollTo(0,0);
+            // run remove playlist links
+            rmListYt(false)
         };
     } else {
+        window.scrollTo(0,0);
+        let ratio = .8;
+        elems.forEach(x=>{
+            let y = x.querySelectorAll('#progress,div.thumbnail-overlay-resume-playback-progress');
+            y.forEach(prog=>{
+                try {
+                    if(prog.offsetWidth / prog.parentNode.offsetWidth >= ratio){
+                        x.remove();
+                    };
+                } catch(e){};
+            });
+        });
         console.log("... IS DONE! *metal riffs*");  
+        document.querySelector('#myModal').style.display = "none";
+        window.scrollTo(0,0);
+        // run remove playlist links
+        rmListYt(false)
     }
 
 };
@@ -327,11 +335,6 @@ function mainScript(){
     createNodes('p','ytChannelToPlaylist','YT Channel to Upload Playlist',modal.querySelector('.modal-body'),ytChannelToPlaylist);
     createNodes('p','copyTextClicked','Copy text of clicked element',modal.querySelector('.modal-body'),copyTextClicked);
 
-    // Set rmListYt function
-    //let rmListYt= document.querySelector('#rmListYt');
-    //rmListYt.addEventListener('click', e =>{
-    // rmListYt()   	
-    //});
 
 
 }
