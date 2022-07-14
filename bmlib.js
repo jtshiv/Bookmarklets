@@ -176,7 +176,7 @@ function rmWatchedYt(){
     //check if there's loading spinner in the bottom
     // mobile is: ytm-continuation-item-renderer class=spinner
     if(document.querySelectorAll('ytd-continuation-item-renderer').length > 0 | 
-    document.querySelectorAll('ytm-continuation-item-renderer.spinner').length > 0){
+    document.querySelectorAll('ytm-continuation-item-renderer').length > 0){
         //scroll down
         try{
             //desktop
