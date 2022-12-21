@@ -262,7 +262,7 @@ function mainScript(){
         top: 0;
         width: 100%; /* Full width */
         height: 100%; /* Full height */
-        font-size: 3vh;
+        font-size: 20px;
         overflow: auto; /* Enable scroll if needed */
         background-color: rgb(0,0,0); /* Fallback color */
         background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
@@ -270,6 +270,8 @@ function mainScript(){
     /* Modal Header */
     .modal-header {
         padding: 2px 16px;
+        font-size: 120%;
+        font-weight: bold;
         background-color: #f44336;
         color: white;
     }
@@ -288,7 +290,16 @@ function mainScript(){
         padding: 0;
         border: 1px solid #888;
         width: 80%;
+        max-width: 400px;
         box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    }
+    @media only screen and (max-width: 600px) {
+        .modal{
+            font-size: 18px;
+        }
+        .modal-content {
+            width: 90%;
+        }
     }
 
     /* The Close Button */
@@ -313,7 +324,7 @@ function mainScript(){
         `<div class="modal-content">
         <div class="modal-header">
         <span class="close">&times;</span>
-        <h3>Scripts</h3>
+        <div>Scripts</div>
         </div>
         <div class="modal-body">
 
