@@ -74,7 +74,7 @@ function playbackSpeed(){
     if(answer!=null){
         let elems = document.getElementsByTagName('video');
         if(elems.length){
-            elems[0].playbackRate=parseInt(answer);
+            elems[0].playbackRate=parseFloat(answer);
         } else{
             alert("Video element not found");
         };
