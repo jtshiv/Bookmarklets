@@ -1,12 +1,11 @@
 // ==UserScript==
 // @name         Bookmarklet Library
 // @namespace    http://tampermonkey.net/
-// @version      0.4.2
+// @version      2023.04.28.1
 // @description  try to take over the world!
 // @author       jtshiv
 // @include      *
-// @updateURL	 https://github.com/jtshiv/Bookmarklets/raw/main/bookmarkLibrary.js
-// @downloadURL	 https://github.com/jtshiv/Bookmarklets/raw/main/bookmarkLibrary.js
+// @downloadURL	 https://raw.githubusercontent.com/jtshiv/Bookmarklets/main/bookmarkLibrary.user.js
 // @supportURL	 https://github.com/jtshiv/Bookmarklets/issues/new
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=google.com
 // @grant        GM_getResourceText
