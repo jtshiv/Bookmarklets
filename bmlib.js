@@ -69,6 +69,50 @@ function addJQuery(callback,params) {
     loop();
 }
 
+function osrsToc() {
+  /* Check if the floating-toc style element already exists */
+  if (document.getElementById('floating-toc-style')) {
+    return; /* Exit if the style element already exists */
+  }
+
+  /* Select the table of contents element */
+  var tocElement = document.querySelector('#toc');
+
+  /* Get the initial offset position of the table of contents */
+  var tocOffset = tocElement.offsetTop;
+
+  /* Create a new <style> element for the floating-toc CSS */
+  var styleElement = document.createElement('style');
+  styleElement.id = 'floating-toc-style';
+  styleElement.innerHTML = `
+    /* CSS for the floating-toc */
+    .floating-toc {
+      position: fixed;
+      top: 0;
+      z-index: 9999;
+    }
+  `;
+
+  /* Inject the <style> element into the <head> of the document */
+  document.head.appendChild(styleElement);
+
+  /* Add a scroll event listener */
+  window.addEventListener('scroll', function() {
+    /* Calculate the current scroll position */
+    var scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+
+    /* Check if the scroll position has passed the table of contents */
+    if (scrollPosition >= tocOffset) {
+      /* Add a CSS class to make the table of contents float */
+      tocElement.classList.add('floating-toc');
+    } else {
+      /* Remove the CSS class if the scroll position is above the table of contents */
+      tocElement.classList.remove('floating-toc');
+    }
+  });
+};
+
+
 function playbackSpeed(){
     let answer = prompt("What playback speed? Set as 1 for 100%.");/* Pausing will reset the playback speed");*/
     if(answer!=null){
@@ -351,6 +395,7 @@ function mainScript(){
     createNodes('p','rmWatchedYt','Remove Watched from YT Playlist',modal.querySelector('.modal-body'),rmWatchedYt);
     createNodes('p','ytChannelToPlaylist','YT Channel to Upload Playlist',modal.querySelector('.modal-body'),ytChannelToPlaylist);
     createNodes('p','copyTextClicked','Copy text of clicked element',modal.querySelector('.modal-body'),copyTextClicked);
+    createNodes('p','osrsToc','OSRS Floating ToC',modal.querySelector('.modal-body'),osrsToc);
 
 
 
