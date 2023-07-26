@@ -116,6 +116,23 @@ function osrsToc() {
 };
 
 
+/**
+ * Goes through the Optimal Quest Guide on OSRS Wiki and checks the boxes at the
+ * top based on the quests marked as completed in the main list.
+ * @returns {any}
+ */
+function osrsOptimalQuestGuide(){
+    document.querySelectorAll('li:not(.checked)>a:first-child').forEach(x=>{
+        let y = document.querySelector('tr.highlight-on[data-rowid="' + x.innerText + '"]');
+        if (y){
+            x.parentElement.classList.add("checked");
+        }
+    });
+
+    document.querySelector('#myModal').style.display = "none";
+}
+
+
 function playbackSpeed(){
     let answer = prompt("What playback speed? Set as 1 for 100%.");/* Pausing will reset the playback speed");*/
     if(answer!=null){
@@ -414,6 +431,7 @@ function mainScript(){
     // functions by href
     if (href == 'https://oldschool.runescape.wiki/w/Optimal_quest_guide'){
         createNodes('p','hrefheader','~~~Page Specific~~~',modal.querySelector('.modal-body'));
+        createNodes('p', 'osrsOptimalQuestGuide', 'Check boxes based on completed quests', modal.querySelector('.modal-body'), osrsOptimalQuestGuide);
 
     }
 
