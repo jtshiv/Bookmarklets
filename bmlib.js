@@ -326,7 +326,10 @@ function mainScript(){
         color: white;
     }
     /* Modal Body */
-    .modal-body {padding: 2px 16px;}
+    .modal-body {
+        padding: 2px 16px;
+        color: black;
+    }
 
     .modal-body:hover{
         cursor: pointer;
