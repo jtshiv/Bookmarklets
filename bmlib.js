@@ -299,6 +299,9 @@ function mainScript(){
     // Basing modals off this:
     // https://www.w3schools.com/howto/howto_css_modals.asp
 
+    let host = document.location.host;
+    let href = document.location.href;
+
     // Create the CSS
     let style=`/* The Modal (background) */
     .modal {
@@ -398,7 +401,14 @@ function mainScript(){
     createNodes('p','rmWatchedYt','Remove Watched from YT Playlist',modal.querySelector('.modal-body'),rmWatchedYt);
     createNodes('p','ytChannelToPlaylist','YT Channel to Upload Playlist',modal.querySelector('.modal-body'),ytChannelToPlaylist);
     createNodes('p','copyTextClicked','Copy text of clicked element',modal.querySelector('.modal-body'),copyTextClicked);
-    createNodes('p','osrsToc','OSRS Floating ToC',modal.querySelector('.modal-body'),osrsToc);
+    // functions by host
+    if (host == 'oldschool.runescape.wiki'){
+        createNodes('p', 'osrsToc', 'OSRS Floating ToC', modal.querySelector('.modal-body'), osrsToc);
+    }
+    // functions by href
+    if (href == 'https://oldschool.runescape.wiki/w/Optimal_quest_guide'){
+
+    }
 
 
 
