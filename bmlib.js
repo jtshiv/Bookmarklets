@@ -14,6 +14,8 @@ let Bm_bLibraryjQuery;
 let Bm_bLibraryjQueryComp;
 let jqueryWorking;
 
+console.log('Script library loaded');
+
 /**
  * @param  {string} message
  * Creates a snackbar on the bottom of the screen
