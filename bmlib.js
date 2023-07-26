@@ -110,6 +110,7 @@ function osrsToc() {
       tocElement.classList.remove('floating-toc');
     }
   });
+    document.querySelector('#myModal').style.display = "none";
 };
 
 
