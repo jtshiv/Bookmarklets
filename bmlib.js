@@ -400,13 +400,14 @@ function mainScript(){
     }
     // Set functions
     createNodes('p','playbackSpeed','Playback Speed',modal.querySelector('.modal-body'),playbackSpeed);
-    createNodes('p','rmListYt','Remove List from YT Urls',modal.querySelector('.modal-body'),rmListYt);
-    createNodes('p','rmWatchedYt','Remove Watched from YT Playlist',modal.querySelector('.modal-body'),rmWatchedYt);
-    createNodes('p','ytChannelToPlaylist','YT Channel to Upload Playlist',modal.querySelector('.modal-body'),ytChannelToPlaylist);
     createNodes('p','copyTextClicked','Copy text of clicked element',modal.querySelector('.modal-body'),copyTextClicked);
     // functions by host
     if (host == 'oldschool.runescape.wiki'){
         createNodes('p', 'osrsToc', 'OSRS Floating ToC', modal.querySelector('.modal-body'), osrsToc);
+    } else if (host == 'www.youtube.com' || host == 'm.youtube.com'){
+        createNodes('p', 'rmListYt', 'Remove List from YT Urls', modal.querySelector('.modal-body'), rmListYt);
+        createNodes('p', 'rmWatchedYt', 'Remove Watched from YT Playlist', modal.querySelector('.modal-body'), rmWatchedYt);
+        createNodes('p', 'ytChannelToPlaylist', 'YT Channel to Upload Playlist', modal.querySelector('.modal-body'), ytChannelToPlaylist);
     }
     // functions by href
     if (href == 'https://oldschool.runescape.wiki/w/Optimal_quest_guide'){
