@@ -132,6 +132,56 @@ function osrsOptimalQuestGuide(){
     document.querySelector('#myModal').style.display = "none";
 }
 
+/**
+ * Toggle the completed quests on list to make scrolling easier
+ * @returns {any}
+ */
+function osrsOqgToggleCompleted(){
+    
+    let tohide;
+    // check if .hide-highlight is used or not
+    let hidden = document.querySelectorAll('.hide-highlight').length;
+    if (hidden >= 1){ // at least some hidden so rem classes
+        tohide = 0;
+    } else{
+        tohide = 1;
+    }
+
+    // go through and either add class or remove
+    let highlighted = document.querySelectorAll('tr.highlight-on');
+
+    highlighted.forEach(x=>{
+        if (tohide === 1){
+            x.classList.add('hide-highlight');
+        } else {
+            try {
+                x.classList.remove('hide-highlight');
+            } catch (error) {
+                
+            }
+        }
+    })
+
+
+    /* css to hide children of highlighted */
+    let id = 'osrsOqgT';
+    document.querySelectorAll('#' + id).forEach(x=>{x.remove()});
+    let styleElement = document.createElement('style');
+    styleElement.id = id;
+    styleElement.innerHTML = `
+        .hide-highlight{
+            height: 20px;
+            display: block;
+            background-color: #bbee91;
+        }
+        .hide-highlight > * {
+            display: none;
+        }
+    `;
+
+    document.head.appendChild(styleElement);
+}
+
 
 function playbackSpeed(){
     let answer = prompt("What playback speed? Set as 1 for 100%.");/* Pausing will reset the playback speed");*/
@@ -432,6 +482,7 @@ function mainScript(){
     if (href == 'https://oldschool.runescape.wiki/w/Optimal_quest_guide'){
         createNodes('p','hrefheader','~~~Page Specific~~~',modal.querySelector('.modal-body'));
         createNodes('p', 'osrsOptimalQuestGuide', 'Check boxes based on completed quests', modal.querySelector('.modal-body'), osrsOptimalQuestGuide);
+        createNodes('p', 'osrsOqgToggle', 'Toggle visibility of completed quests', modal.querySelector('.modal-body'), osrsOqgToggleCompleted);
 
     }
 
