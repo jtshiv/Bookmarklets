@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Bookmarklet Library
 // @namespace    http://tampermonkey.net/
-// @version      2023.10.10.01
+// @version      2023.10.10.02
 // @description  try to take over the world!
 // @author       jtshiv
 // @include      *
@@ -25,10 +25,37 @@
     // load scripts if youtube
     let d = document.domain;
     if (d === 'www.youtube.com'){
-        window.Bm_bLibraryRequest=true;
+        youtube();
     } else if (d === 'm.youtube.com'){
-        window.Bm_bLibraryRequest=true;
+        youtube();
     };
+
+    function youtube(){
+
+    // Define regular expressions for both URL formats
+    const regex1 = /\/playlist\?list=([A-Za-z0-9_-]+)/;
+    const regex2 = /\/playlist\?list=([A-Za-z0-9_-]+)/;
+
+    // Try to match the URL with the regular expressions
+    const match1 = url.match(regex1);
+    const match2 = url.match(regex2);
+
+    // Check which regex matched and return the playlist ID
+    if (match1) || (match2) {
+        window.Bm_bLibraryRequest=true;
+        checkLibraryLoadRequest();
+
+        // run two functions since the main modal has to be open for this particular script
+        function runTwo(a,b){
+            a();b();
+        }
+        setTimeout(createSnackbarFn1("Remove watched",runTwo.bind(null,mainScript,rmWatchedYt)),200)
+    } else {
+        return null; // Return null if the URL format doesn't match
+    }
+
+    }
+
 
 
     function checkLibraryLoadRequest(){
