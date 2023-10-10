@@ -234,26 +234,31 @@ function copyTextClicked(){
 };
 
 function rmListYt(close=true){
-    let reg = /&list=.*&index=\d+/;
-    /*desktop*/
-    let elem;
-    for (elem of document.querySelectorAll('#video-title')){
-        try{
-            elem.href = elem.href.replace(reg,"");
-        }catch(e){};
-    }
-    /*mobile image*/
-    for (elem of document.querySelectorAll('.compact-media-item-image')){
-        try{
-            elem.href = elem.href.replace(reg,"");
-        }catch(e){};
-    }
-    /*mobile other*/
-    for (elem of document.querySelectorAll('.compact-media-item-metadata-content')){
-        try{
-            elem.href = elem.href.replace(reg,"");
-        }catch(e){};
-    }
+
+    // run every second for when user scrolls down
+    let listInterval = setInterval(function(){
+        let reg = /&list=.*&index=\d+/;
+        /*desktop*/
+        let elem;
+        for (elem of document.querySelectorAll('#video-title')){
+            try{
+                elem.href = elem.href.replace(reg,"");
+            }catch(e){};
+        }
+        /*mobile image*/
+        for (elem of document.querySelectorAll('.compact-media-item-image')){
+            try{
+                elem.href = elem.href.replace(reg,"");
+            }catch(e){};
+        }
+        /*mobile other*/
+        for (elem of document.querySelectorAll('.compact-media-item-metadata-content')){
+            try{
+                elem.href = elem.href.replace(reg,"");
+            }catch(e){};
+        }
+
+    },1000);
 
     // close modal
     if (close){
