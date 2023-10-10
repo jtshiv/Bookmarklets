@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Bookmarklet Library
 // @namespace    http://tampermonkey.net/
-// @version      2023.10.10.04
+// @version      2023.10.10.05
 // @description  try to take over the world!
 // @author       jtshiv
 // @include      *
@@ -66,9 +66,9 @@
 
 
 
-    function checkLibraryLoadRequest(){
-        if (typeof (unsafeWindow.Bm_bLibraryRequest) != 'undefined') {      // value set as request from bookmarklet
-            if (typeof (unsafeWindow.Bm_bLibraryLoaded) == 'undefined') {    // value set inside library script
+    function checkLibraryLoadRequest(force=false){
+        if (typeof (unsafeWindow.Bm_bLibraryRequest) != 'undefined' || force===true) {      // value set as request from bookmarklet
+            if (typeof (unsafeWindow.Bm_bLibraryLoaded) == 'undefined' || force===true) {    // value set inside library script
                 let oScript = document.createElement ('script');
                 oScript.type = 'text/javascript';
                 GM_xmlhttpRequest({
