@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Bookmarklet Library
 // @namespace    http://tampermonkey.net/
-// @version      2023.04.28.1
+// @version      2023.10.10.01
 // @description  try to take over the world!
 // @author       jtshiv
 // @include      *
@@ -19,6 +19,17 @@
 
 (function() {
     'use strict';
+
+    console.log("Bookmarklets loaded");
+
+    // load scripts if youtube
+    let d = document.domain;
+    if (d === 'www.youtube.com'){
+        window.Bm_bLibraryRequest=true;
+    } else if (d === 'm.youtube.com'){
+        window.Bm_bLibraryRequest=true;
+    };
+
 
     function checkLibraryLoadRequest(){
         if (typeof (unsafeWindow.Bm_bLibraryRequest) != 'undefined') {      // value set as request from bookmarklet
