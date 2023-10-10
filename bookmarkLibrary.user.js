@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Bookmarklet Library
 // @namespace    http://tampermonkey.net/
-// @version      2023.10.10.02
+// @version      2023.10.10.03
 // @description  try to take over the world!
 // @author       jtshiv
 // @include      *
@@ -41,7 +41,7 @@
     const match2 = url.match(regex2);
 
     // Check which regex matched and return the playlist ID
-    if (match1) || (match2) {
+    if (match1 || match2) {
         window.Bm_bLibraryRequest=true;
         checkLibraryLoadRequest();
 
