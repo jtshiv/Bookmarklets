@@ -365,8 +365,22 @@ function createNodes(type,id,innerHTML,loc,callback = null){
  * This will be the script to open a menu for the others
  * TODO pretty much everything
  * Called with:
- * javascript:(function(){window.Bm_bLibraryRequest=true;let i =0;function loop(){setTimeout(function() {if (window.Bm_bLibraryLoadedComp==true){window['mainScript']();} else if (i<=10){i++;loop();}}, 500)};loop();})()
  */
+/*
+javascript:(
+async function(){
+	var func = 'mainScript';
+	var par = null;
+	window.Bm_bLibraryRequest=true;
+	await new Promise(async function (resolve){
+		while (typeof window[func] !== "function"){
+			await new Promise(r => setTimeout(r,100));
+		};
+		resolve();
+	});
+	window[func](par);
+})()
+*/
 function mainScript(){
     // Basing modals off this:
     // https://www.w3schools.com/howto/howto_css_modals.asp
@@ -379,7 +393,7 @@ function mainScript(){
     .modal {
         display: none; /* Hidden by default */
         position: fixed; /* Stay in place */
-        z-index: 9999; /* Sit on top */
+        z-index: 99999999999999; /* Sit on top */
         left: 0;
         top: 0;
         width: 100%; /* Full width */
